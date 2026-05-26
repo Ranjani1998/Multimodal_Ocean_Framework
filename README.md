@@ -35,61 +35,6 @@ The project uses the following open-source datasets:
 | GEBCO Bathymetry | Seafloor depth, bathymetric context, and ocean-zone classification |
 | INCOIS / OMNI-RAMA / Wave Buoy / HF Radar | Optional Indian Ocean in-situ validation data where access is available |
 
-## Repository Structure
-
-```text
-Multimodal_Ocean_PhD_Framework/
-│
-├── README.md
-├── requirements.txt
-├── config.yaml
-├── run_reproducibility.sh
-│
-├── notebooks/
-│   ├── 01_argo_profile_dataset.ipynb
-│   ├── 02_noaa_oisst_dataset.ipynb
-│   ├── 03_nasa_modis_aqua_chlorophyll.ipynb
-│   ├── 04_1_copernicus_marine_physics.ipynb
-│   ├── 04_2_copernicus_marine_waves.ipynb
-│   ├── 05_era5_atmospheric_dataset.ipynb
-│   ├── 06_noaa_ibtracs_cyclone_dataset.ipynb
-│   ├── 07_gebco_bathymetry_dataset.ipynb
-│   ├── 08_incois_omni_rama_validation.ipynb
-│   ├── dataset_analysis_report.ipynb
-│   ├── phase_0_multimodal_ocean_deep_audit.ipynb
-│   ├── phase_1_multimodal_ocean_transfer_learning.ipynb
-│   └── phase_2_physics_crossmodal_domain_adaptive_framework.ipynb
-│
-├── src/
-│   ├── data_download.py
-│   ├── preprocessing.py
-│   ├── feature_engineering.py
-│   ├── model.py
-│   ├── train.py
-│   ├── evaluate.py
-│   ├── metrics.py
-│   ├── plots.py
-│   └── utils.py
-│
-├── data/
-│   ├── raw/
-│   ├── interim/
-│   ├── processed/
-│   └── external/
-│
-├── results/
-│   ├── figures/
-│   ├── tables/
-│   ├── metrics/
-│   └── logs/
-│
-└── docs/
-    ├── DATA_AVAILABILITY.md
-    ├── CODE_AVAILABILITY.md
-    ├── REPRODUCIBILITY_GUIDE.md
-    └── DATASET_PROVENANCE.md
-```
-
 ## Workflow Overview
 
 The framework follows three major phases.

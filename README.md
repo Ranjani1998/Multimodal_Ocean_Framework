@@ -57,28 +57,6 @@ venv\Scripts\activate         # Windows
 pip install -r requirements.txt
 ```
 
-## Reproducibility
-
-After installing dependencies and preparing dataset access credentials where required, run:
-
-```bash
-bash run_reproducibility.sh
-```
-
-The script is intended to execute the major steps in sequence: dataset preparation, preprocessing, model training, evaluation, and generation of publication-ready outputs.
-
-## Expected Outputs
-
-The repository is designed to generate:
-
-- Cleaned and harmonized multimodal ocean datasets
-- Dataset audit summaries
-- Training and validation metrics
-- Climate-risk classification outputs
-- Cyclone-induced disturbance features
-- Publication-ready figures and tables
-- Reproducibility logs for reviewer verification
-
 ## Citation and Dataset Acknowledgement
 
 Users of this repository should cite the original dataset providers and comply with the access policies of Argo, NOAA, NASA, Copernicus Marine, ECMWF/Copernicus Climate Data Store, GEBCO, IBTrACS, and INCOIS/OMNI-RAMA where applicable.

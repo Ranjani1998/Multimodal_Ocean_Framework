@@ -1,0 +1,17 @@
+figure_id,title,purpose,student_takeaway,file_name
+Figure 1,Study Area Map,Shows the two main basins used for transfer learning.,Students understand where the data comes from and why two basins matter.,figure01_study_area_map.png
+Figure 2,Observation Density Map,Shows where the dataset has stronger coverage.,More coverage means more reliable learning from the ocean environment.,figure02_observation_density_map.png
+Figure 3,Mean SST Map,Displays the thermal structure of the surface ocean.,It helps explain why temperature-based events can be learned by the model.,figure03_mean_sst_map.png
+Figure 4,SST Anomaly Map,Highlights thermal abnormalities.,This is central to thermal anomaly detection and climate interpretation.,figure04_sst_anomaly_map.png
+Figure 5,Chlorophyll Map,Shows productivity and HAB-related regions.,Students can see that the project also understands ecosystem patterns.,figure05_chlorophyll_map.png
+Figure 6,Wind Speed Map,Shows atmospheric forcing over the ocean.,Students see how atmosphere and ocean are coupled.,figure06_wind_speed_map.png
+Figure 7,Wave Climate Map,Shows energetic sea conditions.,It supports the climate-risk part of the project.,figure07_wave_risk_map.png
+Figure 8,Cyclone Influence Map,Shows where ocean states are affected by cyclones.,This is intuitive for explaining storm-ocean coupling.,figure08_cyclone_influence_map.png
+Figure 9,Bathymetry Map,Shows deep and shallow ocean regions.,This explains physical ocean context for non-coding students.,figure09_bathymetry_map.png
+Figure 10,Ocean State Map,Shows dominant ocean state at each location.,This is one of the clearest figures for non-coding students.,figure10_ocean_state_map.png
+Figure 11,Climate Risk Map,Shows spatial climate-risk interpretation.,Ideal for presenting the project impact.,figure11_climate_risk_map.png
+Figure 12,Year-wise Climate Risk Trend,Shows how risk classes evolve over time.,Students can follow the 2020–2024 risk story.,figure12_yearwise_risk_trend.png
+Figure 13,Basin-wise Ocean State Comparison,Compares ocean-state differences between basins.,This makes the need for transfer learning visually obvious.,figure13_basin_state_comparison.png
+Figure 14,Model Performance Comparison,Shows how different models perform.,Students understand the final achievement of the project.,figure14_model_comparison_metrics.png
+Figure 15,Seasonal SST Story,Shows how ocean surface temperature changes by season.,Students connect monsoon climate with ocean dynamics.,figure15_seasonal_sst_*.png
+Figure 16,Ocean-State Hotspot Scatter,Shows spatial hotspots of ocean-state classes.,Students see abnormal event locations as map points.,figure16_ocean_state_hotspot_scatter.png

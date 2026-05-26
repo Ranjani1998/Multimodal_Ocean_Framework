@@ -134,10 +134,6 @@ The repository is designed to generate:
 - Publication-ready figures and tables
 - Reproducibility logs for reviewer verification
 
-## Notes for SCI/SCIE Submission
-
-For journal submission, upload the complete GitHub repository with source code, cleaned scripts, configuration files, and reproducibility instructions. Do not upload raw large datasets directly to GitHub. Instead, provide dataset source links, access instructions, and processed sample files if the journal permits. Large model files, processed datasets, and supplementary outputs should be placed in Zenodo, Figshare, OSF, institutional repositories, or journal supplementary material, depending on the journal policy.
-
 ## Citation and Dataset Acknowledgement
 
 Users of this repository should cite the original dataset providers and comply with the access policies of Argo, NOAA, NASA, Copernicus Marine, ECMWF/Copernicus Climate Data Store, GEBCO, IBTrACS, and INCOIS/OMNI-RAMA where applicable.

@@ -1,6 +1,6 @@
 # Multimodal Ocean Intelligence Framework for Indian Ocean Risk Analysis
 
-This repository contains the reproducibility package for a PhD research project on multimodal ocean-state analysis and climate-risk modelling over the Bay of Bengal and Arabian Sea. The workflow integrates open-source oceanographic, atmospheric, cyclone, bathymetry, wave, and remote-sensing datasets to support physically informed ocean intelligence, cross-modal learning, and domain-adaptive prediction.
+This repository contains the project on multimodal ocean-state analysis and climate-risk modelling over the Bay of Bengal and Arabian Sea. The workflow integrates open-source oceanographic, atmospheric, cyclone, bathymetry, wave, and remote-sensing datasets to support physically informed ocean intelligence, cross-modal learning, and domain-adaptive prediction.
 
 ## Project Scope
 

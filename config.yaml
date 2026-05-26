@@ -1,0 +1,172 @@
+# Configuration file for the Multimodal Ocean Intelligence PhD Framework
+# Project: Multimodal Ocean-State Prediction, Risk Classification, and Domain-Adaptive Learning
+
+project:
+  name: "Multimodal Ocean Intelligence Framework"
+  description: "Open-source multimodal ocean analytics framework integrating Argo, NOAA OISST, MODIS-Aqua, Copernicus Marine, ERA5, IBTrACS, GEBCO, and INCOIS/OMNI-RAMA observations."
+  version: "1.0.0"
+  author: "Suba Ranjani"
+  reproducibility_mode: true
+  random_seed: 42
+
+study_region:
+  study_period:
+    start_date: "2020-01-01"
+    end_date: "2024-12-31"
+  temporal_resolution: "daily"
+  depth_range_m:
+    min: 0
+    max: 1000
+  standard_depth_levels_m: [0, 10, 20, 30, 50, 75, 100, 150, 200, 300, 500, 700, 1000]
+  basins:
+    bay_of_bengal:
+      latitude_min: 5.0
+      latitude_max: 22.0
+      longitude_min: 80.0
+      longitude_max: 98.0
+    arabian_sea:
+      latitude_min: 5.0
+      latitude_max: 22.0
+      longitude_min: 60.0
+      longitude_max: 75.0
+
+datasets:
+  argo:
+    enabled: true
+    source: "Argo GDAC / BGC-Argo Sprof"
+    raw_dir: "data/raw/argo/"
+    processed_dir: "data/processed/argo/"
+    variables: ["latitude", "longitude", "time", "pressure", "depth", "temperature", "salinity", "quality_flags"]
+  noaa_oisst:
+    enabled: true
+    source: "NOAA OISST v2.1"
+    raw_dir: "data/raw/noaa_oisst/"
+    processed_dir: "data/processed/noaa_oisst/"
+    variables: ["time", "latitude", "longitude", "sst", "sst_anomaly"]
+  nasa_modis_aqua:
+    enabled: true
+    source: "NASA MODIS-Aqua Ocean Color"
+    raw_dir: "data/raw/modis_aqua/"
+    processed_dir: "data/processed/modis_aqua/"
+    variables: ["time", "latitude", "longitude", "chlor_a", "quality_flag"]
+  copernicus_physics:
+    enabled: true
+    source: "Copernicus Marine Global Ocean Physics Reanalysis"
+    raw_dir: "data/raw/copernicus_physics/"
+    processed_dir: "data/processed/copernicus_physics/"
+    variables: ["time", "latitude", "longitude", "uo", "vo", "zos", "mlotst", "thetao", "so"]
+  copernicus_waves:
+    enabled: true
+    source: "Copernicus Marine Global Ocean Waves Reanalysis"
+    raw_dir: "data/raw/copernicus_waves/"
+    processed_dir: "data/processed/copernicus_waves/"
+    variables: ["time", "latitude", "longitude", "significant_wave_height", "wave_period", "wave_direction"]
+  era5:
+    enabled: true
+    source: "ERA5 Atmospheric Reanalysis"
+    raw_dir: "data/raw/era5/"
+    processed_dir: "data/processed/era5/"
+    variables: ["time", "latitude", "longitude", "u10", "v10", "mean_sea_level_pressure", "surface_pressure"]
+  ibtracs:
+    enabled: true
+    source: "NOAA IBTrACS North Indian Ocean"
+    raw_dir: "data/raw/ibtracs/"
+    processed_dir: "data/processed/ibtracs/"
+    variables: ["storm_id", "storm_name", "time", "latitude", "longitude", "wind_speed", "central_pressure", "storm_category", "basin"]
+  gebco:
+    enabled: true
+    source: "GEBCO Bathymetry Grid"
+    raw_dir: "data/raw/gebco/"
+    processed_dir: "data/processed/gebco/"
+    variables: ["latitude", "longitude", "elevation", "ocean_depth_class"]
+  incois_omni_rama:
+    enabled: false
+    source: "INCOIS / OMNI-RAMA / Wave Buoy / HF Radar"
+    raw_dir: "data/raw/incois/"
+    processed_dir: "data/processed/incois/"
+    access_note: "Enable only when institutional or registered access is available."
+
+preprocessing:
+  spatial_resolution_degree: 0.25
+  interpolation_method: "linear"
+  missing_value_strategy: "quality_flag_filter_then_temporal_interpolation"
+  cyclone_distance_radius_km: 500
+  daily_aggregation:
+    enabled: true
+    statistics: ["mean", "max", "min", "std"]
+  normalization:
+    method: "zscore"
+    fit_on_train_only: true
+
+features:
+  ocean_physics: ["temperature", "salinity", "sst", "mixed_layer_depth", "sea_level_anomaly", "current_speed", "current_direction"]
+  atmosphere: ["wind_speed", "wind_direction", "mean_sea_level_pressure", "surface_pressure"]
+  biology: ["chlorophyll_a", "chlorophyll_anomaly"]
+  waves: ["significant_wave_height", "wave_period", "wave_direction", "wave_energy"]
+  static: ["bathymetry", "depth_class", "basin_id"]
+  event_labels: ["cyclone_presence", "cyclone_intensity", "distance_from_cyclone_center"]
+
+model:
+  framework_name: "Physics-Guided Cross-Modal Domain-Adaptive Ocean Framework"
+  task_type: "multitask_classification_regression"
+  sequence_length_days: 30
+  prediction_horizon_days: 1
+  hidden_dim: 128
+  num_layers: 3
+  dropout: 0.25
+  attention_heads: 4
+  domain_adaptation: true
+  physics_guidance: true
+  transfer_learning: true
+
+training:
+  device: "auto"
+  epochs: 100
+  batch_size: 64
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  optimizer: "adamw"
+  scheduler: "cosine_annealing"
+  early_stopping:
+    enabled: true
+    patience: 15
+    monitor: "val_loss"
+  split:
+    train: 0.70
+    validation: 0.15
+    test: 0.15
+  cross_validation:
+    enabled: false
+    folds: 5
+
+losses:
+  classification_loss: "weighted_cross_entropy"
+  regression_loss: "huber"
+  domain_loss: "gradient_reversal_adversarial_loss"
+  physics_loss: "ocean_consistency_regularization"
+  loss_weights:
+    classification: 1.0
+    regression: 0.5
+    domain: 0.2
+    physics: 0.3
+
+metrics:
+  classification: ["accuracy", "precision", "recall", "f1_score", "balanced_accuracy", "auroc", "auprc"]
+  regression: ["mae", "rmse", "r2", "mape"]
+  risk_assessment: ["confusion_matrix", "critical_event_recall", "false_alarm_rate"]
+
+outputs:
+  results_dir: "results/"
+  figures_dir: "figures/"
+  tables_dir: "tables/"
+  checkpoints_dir: "checkpoints/"
+  logs_dir: "logs/"
+  save_model: true
+  save_predictions: true
+  save_intermediate_features: false
+
+reproducibility:
+  save_config_copy: true
+  log_environment: true
+  deterministic_training: true
+  export_final_artifacts: true
